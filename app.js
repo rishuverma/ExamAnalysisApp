@@ -120,17 +120,13 @@ app.use('/email/:tid',(req,res,next)=>{
                 console.log(path.join(__dirname,'.',req.params.tid+'.pdf'));
                 transporter.sendMail({
                     to:testUser[0]['email'],
-                    from : "Foxmula<support@foxmula.com>",
-                    subject: "Your #TheFirstStep with Foxmula | Report",
+                    from : "your Details",
+                    subject: "your Details",
                     html: "Hi there,<br>" +
-                        "Please find the attached Report for #TheFirstStep<br>" +
-                        "Also we have scheduled a HR call, to discuss feasibility of you on-boarding us for Training, Certification & Internship (even Jobs in our partner companies, if applicable).<br>" +
-                        "Cheers,<br>" +
-                        "Team Foxmula<br>" +
-                        '<img src="https://test.foxmula.com/static/images/fox_logo.png"><br>' +
-                        "<a href='https://foxmula.com' target='_blank'>foxmula.com</a>",
+                        "Please find the attached Report for #TheFirstStep<br>",
+                        
                     attachments: [{
-                        file: "FoxmulaReport.pdf",
+                        file: "Report.pdf",
                         path: path.join(__dirname,'.',req.params.tid+'.pdf')
                     }]
                 });
