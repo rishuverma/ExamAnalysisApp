@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<link rel="shortcut icon" href="" type="image/x-icon">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <title>Report</title>
+    <style>
+        #nonbold{
+            font-family:Arial, Helvetica, sans-serif;
+            font-weight:100;
+            font-size: 10px;
+        }
+        .main{
+            margin-top:1%;
+            margin-left:5%;
+            margin-right:5%;
+        }
+        .blue{
+            position: relative;
+            top: 0;
+            left: 0;
+        }
+        .logo{
+            position: absolute;
+            top: 20px;
+            left: 40px;
+        }
+        .images, .headerinfo{
+            display:inline-block;
+        }
+        .images{
+            width:40%;
+            margin-right:2%;
+        }
+        .headerinfo {
+            width:42%;
+        }
+        .logo {background:black;}
+
+    </style>
+</head>
+<body>
+<div class="main">
+    <div class="container-fluid" style=height:12in;>
+
+        <img src='/static/images/webheader.jpg' width="90%">
+
+        <h3 class="headerinfo"><strong>Report</strong></h3>
+        <br>
+        <div class="studentinfo">
+            <h6 style="font-family:miriam"><b>Email:  <%= finalobj.signupobj.email %><b></h6>
+            <h6 style="font-family:miriam"><b>TestId:  <%= finalobj.responseobj.testId %><b></h6>
+        </div>
+        <br>
+        <p>
+
+            We have emailed you a detailed report (5 pages) at <%= finalobj.signupobj.email %>.
+            <br>If you have mistyped your email address, kindly retake the <a target="_blank" href="https://test.foxmula.com">test</a>.
+            <br>Here is what we found in brief...<br>
+        </p>
+        <br>
+        <div class="otherinfo">
+            <%= finalobj.signupobj.name %>, this report gives you the analysis of the exam you took
+            there are no right or worng answers its tries to study what you subconsiously think about a subject and gives you the report
+        </div>
+        <br>
+        <br>
+        <img src='/static/images/report_header3.jpg' width="90%">
+        <br>
+        <br>
+        <div class="w3-container">
+            <div class="w3-light-white">
+                <%
+                var color=['w3-green','w3-red','w3-yellow','w3-blue','w3-orange'];
+                var maxpercent=-1;
+                var finalcourse;
+                for(let i=0;i<finalobj.courseobj[0].courseid.length;++i){
+                    var cname=finalobj.courseobj[0].coursename[i];
+                    var percent=parseInt(finalobj.responseobj.categorypercentarray[i].percent);
+                    var tagini='style=width:';
+                    var tagend='%';
+                    if(percent>maxpercent){
+                        maxpercent=percent;
+                        finalcourse=cname;
+                    }
+                %>
+
+                <% if (cname == "ml") { %>
+                    Subject 1
+                <% } else if (cname == "wd") { %>
+                    Subject 2
+                <% } else if (cname == "cc") { %>
+                   Subject 3
+                <% } else if (cname == "sec") { %>
+                    Subject 4
+                <% } else if (cname == "dsc") { %>
+                    Subject 5
+                <% } %>
+                <div class="w3-container <%= color[i] %> w3-center" <%= tagini %><%= percent %><%= tagend %>  ><%= percent %>%</div>
+                <%
+                }
+                %>
+
+            </div><br><br>
+            <br>
+            <br>
+            <br>
+        </div>
+        <a onclick="closeWindow()"><button>Close this window!</button></a>
+        
+
+        <!-- Your share button code -->
+        
+        <br>
+        <br>
+    </div>
+</div>
+</body>
+
+</html>
+

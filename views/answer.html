@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <style>
+        .main{
+            margin-top:1%;
+            margin-left:5%;
+            margin-right:5%;
+        }
+        .blue{
+            position: relative;
+            top: 0;
+            left: 0;
+        }
+        .logo{
+            position: absolute;
+            top: 20px;
+            left: 40px;
+        }
+        .images, .headerinfo{
+            display:inline-block;
+        }
+        .images{
+            width:40%;
+            margin-right:2%;
+        }
+        .headerinfo {
+            width:42%;
+        }
+        .logo {background:black;}
+
+    </style>
+</head>
+<body>
+<div class="main">
+    <div class="container-fluid" style=height:12in;>
+
+                <img src='/static/images/webheader.jpg' width="90%">
+
+            <h3 class="headerinfo"><strong>Report Card</strong></h3>
+
+        <div class="studentinfo">
+            <h6 style="font-family:miriam"><b>Email:  <%= finalobj.signupobj.email %><b></h6>
+            <h6 style="font-family:miriam"><b>Test ID:  <%= finalobj.responseobj.testId %><b></h6>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div class="otherinfo">
+            <%= finalobj.signupobj.name %>, this report intends to provide you with an idea about the cutting edge technologies, of Industrial Revolution 4.0, you can outperform and excel in. This is based on your organic way of approach towards situations and problems. Let's see what your subconscious mind wants you to do about your career.
+        </div>
+
+        <img src='/static/images/report_header3.jpg' width="90%">
+
+        <div class="w3-container">
+            <div class="w3-light-white">
+                <%
+                var color = ['w3-green','w3-red','w3-yellow','w3-blue','w3-orange'];
+                var maxpercent = -1;
+                var finalcourse;
+                for(let i=0; i<finalobj.courseobj[0].courseid.length; ++i){
+                var cname = finalobj.courseobj[0].coursename[i];
+                var percent = parseInt(finalobj.responseobj.categorypercentarray[i].percent);
+                var tagini = 'style=width:';
+                var tagend = '%';
+                if (percent > maxpercent){
+                maxpercent = percent;
+                finalcourse = cname;
+                }
+                %>
+                <%= cname %><div class="w3-container <%= color[i] %> w3-center" <%= tagini %><%= percent %><%= tagend %>  ><%= percent %>%</div>
+            <%
+            }
+            %>
+        </div>
+        <%
+        var color = ['w3-green','w3-red','w3-yellow','w3-blue','w3-orange'];
+        var maxpercent = -1;
+        var finalcourse;
+        for(let i=0; i<finalobj.courseobj[0].courseid.length; ++i){
+        var cname = finalobj.courseobj[0].coursename[i];
+        var percent = parseInt(finalobj.responseobj.categorypercentarray[i].percent);
+        var tagini = 'style=width:';
+        var tagend = '%';
+        if (percent > maxpercent){
+        maxpercent = percent;
+        finalcourse = cname;
+        }
+        %>
+        <% cname %>
+        <div class="progress">
+            <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%">
+                <%= percent %>
+            </div>
+        </div>
+        <% } %>
+    </div><br><br><br>
+</div>
+<div class="container-fluid">
+            <img src='https://1012672760.rsc.cdn77.org/report_header2.jpg' width="90%">
+
+    </nav>
+
+    <div class="questions">
+        <%
+        for(let i=0;i<finalobj.questionobj.question.length;++i){
+        %>		<b><p>Question:<%= finalobj.questionobj.question[i] %></p></b>
+        <p>Your Response:<%= finalobj.questionobj.option[i] %>|<%= finalobj.questionobj.comment[i] %></p>
+        <br>
+
+        <%
+        }
+        %>
+    </div>
+</div>
+<div style=height:8in;></div>
+<div class="container-fluid">
+    We suggest you to take <%= finalcourse %> course.
+</div>
+</div>
+</body>
+</html>

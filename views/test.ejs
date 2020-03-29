@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="http://localhost:3000/static/images/logo.png" type="image/x-icon">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Your First Step</title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="http://localhost:3000/static/fonts/material-icon/css/material-design-iconic-font.min.css">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<script>
+    function validateit(form){
+        var errarr=[];
+        var onlyalphabets=/^[A-Za-z]+$/;
+        var onlymobile=/^\d{10}$/;
+
+        if(!onlymobile.test(form.contact.value)){
+            errarr.push("MOBILE NUMBER REQUIRES EXACTLY 10 DIGITS");
+
+        }
+
+        if(errarr.length>0){
+            var st="ERROR:\n\n";
+            for(var i=0;i<errarr.length;i++){
+                var k=i+1;
+                var kstr=k.toString();
+
+                st=st+kstr+"."+" "+errarr[i]+"\n";
+            }
+            alert(st);
+            return false;
+
+        }
+
+
+
+
+        return true;
+    }
+
+
+
+    function showalert(){
+        alert('email used');
+    }
+    if(<%= flag %>){
+        showalert();
+    }
+
+
+</script>
+<body>
+<a href="https://google.com" target="_blank"><img class="image-class" src="/static/images/logo.png"></a>
+<center>
+    <div class="main">
+        <div class="container">
+            <form action="/test" method="POST" class="appointment-form" id="appointment-form" onsubmit=" return validateit(this)">
+                <h2>Take your Test Here</h2>
+                <div class="form-group-1">
+                    <input type="text" name="name" id="title" placeholder="Full name" required />
+                    <input type="email" name="email" id="name" placeholder="Email" required />
+                    <input type="text" name="contact" id="email" placeholder="Phone number" required />
+                    <input type="text" name="college" id="phone_number" placeholder="College"/>
+                </div>
+
+                <div class="form-submit">
+                    <input type="submit" name="submit" id="submit" class="submit" value="Start test" />
+                </div>
+            </form>
+        </div>
+    </div>
+    <!--    <h2>Coming soon!</h2>-->
+</center>
+
+<!-- JS -->
+
+</body>
+</html>
